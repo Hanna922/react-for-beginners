@@ -8,21 +8,28 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     const root = document.getElementById("root");
-    let counter = 0;
-    function countUp() {
-      counter = counter + 1;
-      render();
+    function App() {
+      const [counter, setCounter] = React.useState(0);
+      const onClick = () => {
+        setCounter(counter + 1);  
+        // setCounter()는 부여한 값으로 업데이트하고 리렌더링 함
+      };
+      return (
+        <div>
+          <h3>Total clicks: {counter}</h3>
+          <button onClick={onClick}>Click me</button>
+        </div>
+      );
     }
-    function render() {
-      ReactDOM.render(<Container />, root);
-      // Container 컴포넌트를 root에 담아줌
-    }
-    const Container = () => (
-      <div>
-        <h3>Total clicks: {counter}</h3>
-        <button onClick={countUp}>Click me</button>
-      </div>
-    );
-    render();
+    ReactDOM.render(<App />, root);
   </script>
 </html>
+
+<!-- React.js 어플 내에서 데이터를 보관하고 자동으로 리렌더링을 일으킬 수 있는 최고의 방법
+console.log(data) 시 [undefined, f] 출력 => undefined가 data, f는 data를 바꿀 때 사용하는 function
+React.useState() 함수는 초기값 설정 가능
+
+const food = ["tomato", "potato"] 에서
+const myFavFood = food[0]; 과
+const mySecondFavFood = food[1]; 은
+const [myFavFood, mySecondFavFood] = food; 한 줄과 동일 -->
