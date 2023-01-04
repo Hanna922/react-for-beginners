@@ -8,13 +8,14 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     const root = document.getElementById("root");
-    const title = (
-      <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
+    function Title() {
+      return (
+        <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
         Hello I'm a title
-      </h3>
-    );
-
-    const button = (
+        </h3> 
+      ); // JSX를 return 해줘야 함
+    };
+    const Button = () => (
       <button
         id="button"
         style={{ backgroundColor: "tomato" }}
@@ -23,7 +24,12 @@
         Click me
       </button>
     );
-    const container = React.createElement("div", null, [title, button]);
-    ReactDOM.render(container, root);
+    const Container = () => (
+      <div>
+        <Title />
+        <Button />
+      </div>
+    )
+    ReactDOM.render(<Container />, root);
   </script>
 </html>
